@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bce8vin34cd88" path="res://code/main.gd" id="1_ig7tw"]
 [ext_resource type="StyleBox" uid="uid://nhx7jgro50t" path="res://themes/element_friend.tres" id="2_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://bwsmqnjf5pylq" path="res://sounds/751080__smallconfusion__mechanical-plastic-click-02.wav" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://bl0farenm73op" path="res://sounds/476177__unadamlar__wrong-choice.wav" id="5_lquwl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.3954539, 0.5960563, 0.9408558, 1)
@@ -35,6 +36,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=211594171]
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 119.0
+grow_horizontal = 2
+scale = Vector2(1.385, 1.385)
+pivot_offset = Vector2(250, 34)
+theme_override_font_sizes/font_size = 50
+text = "150"
+horizontal_alignment = 1
 
 [node name="CircleBackground" type="Panel" parent="." unique_id=251562514]
 layout_mode = 1
@@ -125,16 +140,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=457532437]
+[node name="HeartsControl" type="Control" parent="." unique_id=1129564326]
+z_index = 1
+layout_mode = 1
+anchor_left = 0.70000005
+anchor_right = 1.0
+anchor_bottom = 0.045
+offset_left = -3.0517578e-05
+offset_right = -0.00018310547
+offset_bottom = 0.0399971
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HeartsControl" unique_id=1976503504]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.3000001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeartsControl/MarginContainer" unique_id=916782182]
+layout_mode = 2
+alignment = 1
+
+[node name="AudioStreamPlayerSucces" type="AudioStreamPlayer" parent="." unique_id=457532437]
 stream = ExtResource("4_1bvp3")
 
-[node name="ScoreLabel" type="Label" parent="." unique_id=211594171]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 119.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "150"
-horizontal_alignment = 1
+[node name="AudioStreamPlayerWrong" type="AudioStreamPlayer" parent="." unique_id=1369300996]
+stream = ExtResource("5_lquwl")

@@ -1,4 +1,6 @@
-[gd_resource type="StyleBoxFlat" format=3 uid="uid://ciuglsimu31u0"]
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://ciuglsimu31u0"]
+
+[ext_resource type="Texture2D" uid="uid://8uu5eva2xfef" path="res://sprites/heart.png" id="1_oitmj"]
 
 [resource]
-bg_color = Color(0.9098039, 0.3372549, 0.5411765, 1)
+texture = ExtResource("1_oitmj")

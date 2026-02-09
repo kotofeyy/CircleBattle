@@ -1,21 +1,30 @@
 extends Control
 
+@onready var enemy_prefub: PackedScene = preload("res://enemy.tscn")
+@onready var heart_preload: PackedScene = preload("res://heart.tscn")
 
 @onready var panel: Panel = $Panel
 @onready var score_label: Label = $ScoreLabel
-@onready var enemy_prefub: PackedScene = preload("res://enemy.tscn")
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_stream_player_succes: AudioStreamPlayer = $AudioStreamPlayerSucces
+@onready var audio_stream_player_wrong: AudioStreamPlayer = $AudioStreamPlayerWrong
+@onready var h_box_container: HBoxContainer = $HeartsControl/MarginContainer/HBoxContainer
 
 
 var direction: bool
 var scores = 0
 var chance_spawn_eneemy = 0.15
+var chance_spawn_heart = 0.30
 var health = 3
 var game_is_start = true
+
 
 func _ready() -> void:
 	score_label.text = str(scores)
 	spawn_loop()
+	add_heart()
+	add_heart()
+	add_heart()
+
 
 func _physics_process(delta: float) -> void:
 	if direction:
@@ -40,7 +49,11 @@ func spawn_loop() -> void:
 		if chance < chance_spawn_eneemy:
 			enemy.type_element = "enemy"
 		else:
-			enemy.type_element = "friend"
+			if chance < chance_spawn_heart:
+			
+				enemy.type_element = "heart"
+			else:
+				enemy.type_element = "friend"
 		add_child(enemy)
 		enemy.position = Vector2(position_x, screen_size.y)
 		
@@ -51,15 +64,44 @@ func spawn_loop() -> void:
 
 func on_area_entered(type) -> void:
 	if type == "friend":
+		audio_stream_player_succes.play()
 		scores += 1
+		score_label_shake()
 		if scores > 10:
 			chance_spawn_eneemy = 0.25
-	else:
+	if type == "heart":
+		audio_stream_player_succes.play()
+		if health < 3:
+			health += 1
+			add_heart()
+	if type == "enemy":
+		audio_stream_player_wrong.play()
 		health -= 1
+		remove_heart()
+		score_label_wrong()
 		if health < 1:
 			game_is_start = false
-		
 
 	score_label.text = str(scores)
 	
-	audio_stream_player.play()
+	
+func add_heart() -> void:
+	var heart_inst = heart_preload.instantiate()
+	h_box_container.add_child(heart_inst)
+
+
+func remove_heart() -> void:
+	var first_born = h_box_container.get_child(0)
+	first_born.queue_free()
+
+
+func score_label_shake() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(score_label, "scale", Vector2(1.5, 1.5), 0.1)
+	tween.chain().tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.1)
+
+
+func score_label_wrong() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(score_label, "rotation_degrees", 30, 0.1)
+	tween.chain().tween_property(score_label, "rotation_degrees", 0, 0.1)

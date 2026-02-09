@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://h53bfcqywnoh"]
+
+[ext_resource type="Texture2D" uid="uid://8uu5eva2xfef" path="res://sprites/heart.png" id="1_cixvg"]
+
+[node name="Heart" type="TextureRect" unique_id=1222624823]
+texture_filter = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_cixvg")
+stretch_mode = 3
