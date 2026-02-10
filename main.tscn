@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://bce8vin34cd88" path="res://code/main.gd" id="1_ig7tw"]
 [ext_resource type="StyleBox" uid="uid://nhx7jgro50t" path="res://themes/element_friend.tres" id="2_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://bwsmqnjf5pylq" path="res://sounds/751080__smallconfusion__mechanical-plastic-click-02.wav" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cakak3yixlajj" path="res://sprites/hit.png" id="5_7mycd"]
 [ext_resource type="AudioStream" uid="uid://bl0farenm73op" path="res://sounds/476177__unadamlar__wrong-choice.wav" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cm12x7ldcsk6u" path="res://sprites/hit_white.png" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://b06pubdaulyx0" path="res://sprites/refresh.png" id="7_272bh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.3954539, 0.5960563, 0.9408558, 1)
@@ -17,6 +20,125 @@ size = Vector2(40, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("5_7mycd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("5_7mycd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
+atlas = ExtResource("5_7mycd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
+atlas = ExtResource("5_7mycd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
+atlas = ExtResource("5_7mycd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = ExtResource("6_7mycd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("6_7mycd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("6_7mycd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("6_7mycd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("6_7mycd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dg77c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_272bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vw27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kek77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vivmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
+}],
+"loop": false,
+"name": &"hit_white",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.655619, 0.9408492, 0.8325864, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
 
 [node name="Main" type="Control" unique_id=2112709019]
 layout_mode = 3
@@ -131,15 +253,6 @@ theme_override_styles/panel = ExtResource("2_1bvp3")
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="EnemiesManager" type="Control" parent="." unique_id=1376104453]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
 [node name="HeartsControl" type="Control" parent="." unique_id=1129564326]
 z_index = 1
 layout_mode = 1
@@ -147,8 +260,9 @@ anchor_left = 0.70000005
 anchor_right = 1.0
 anchor_bottom = 0.045
 offset_left = -3.0517578e-05
+offset_top = 21.97
 offset_right = -0.00018310547
-offset_bottom = 0.0399971
+offset_bottom = 22.009998
 grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="HeartsControl" unique_id=1976503504]
@@ -172,3 +286,146 @@ stream = ExtResource("4_1bvp3")
 
 [node name="AudioStreamPlayerWrong" type="AudioStreamPlayer" parent="." unique_id=1369300996]
 stream = ExtResource("5_lquwl")
+
+[node name="AnimatedSprite2DHit" type="AnimatedSprite2D" parent="." unique_id=1757378081]
+z_index = 2
+position = Vector2(-96, 0)
+scale = Vector2(1.415, 1.415)
+sprite_frames = SubResource("SpriteFrames_dg77c")
+animation = &"hit_white"
+frame = 4
+frame_progress = 1.0
+speed_scale = 3.0
+
+[node name="EndGamePanel" type="Panel" parent="." unique_id=1717770967]
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vw27")
+
+[node name="MarginContainer" type="MarginContainer" parent="EndGamePanel" unique_id=1448346305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGamePanel/MarginContainer" unique_id=1468686283]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FinalScoresLabel" type="Label" parent="EndGamePanel/MarginContainer/VBoxContainer" unique_id=1442533962]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Очков: 0"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RecordScoresLabel" type="Label" parent="EndGamePanel/MarginContainer/VBoxContainer" unique_id=857974863]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Рекорд: 0"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RestartGameButton" type="Button" parent="EndGamePanel/MarginContainer" unique_id=667270148]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kek77")
+theme_override_styles/hover = SubResource("StyleBoxFlat_272bh")
+icon = ExtResource("7_272bh")
+icon_alignment = 1
+
+[node name="Clouds" type="Control" parent="." unique_id=1290943830]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 57.0
+grow_horizontal = 2
+
+[node name="Panel8" type="Panel" parent="Clouds" unique_id=500056165]
+layout_mode = 0
+offset_left = 287.0
+offset_top = -117.0
+offset_right = 440.0
+offset_bottom = 13.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel7" type="Panel" parent="Clouds" unique_id=743594280]
+layout_mode = 0
+offset_left = 249.0
+offset_top = -105.0
+offset_right = 354.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel6" type="Panel" parent="Clouds" unique_id=1861250451]
+layout_mode = 0
+offset_left = 140.0
+offset_top = -100.0
+offset_right = 245.0
+offset_bottom = 13.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel5" type="Panel" parent="Clouds" unique_id=2116424507]
+layout_mode = 0
+offset_left = 195.0
+offset_top = -75.0
+offset_right = 300.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel4" type="Panel" parent="Clouds" unique_id=1211145286]
+layout_mode = 0
+offset_left = 372.0
+offset_top = -97.0
+offset_right = 477.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel3" type="Panel" parent="Clouds" unique_id=1617301782]
+layout_mode = 0
+offset_left = 444.0
+offset_top = -81.0
+offset_right = 549.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel2" type="Panel" parent="Clouds" unique_id=1095800755]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -93.0
+offset_right = 172.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[node name="Panel" type="Panel" parent="Clouds" unique_id=593875581]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -58.0
+offset_right = 84.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c57u")
+
+[connection signal="pressed" from="EndGamePanel/MarginContainer/RestartGameButton" to="." method="_on_restart_game_button_pressed"]

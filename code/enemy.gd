@@ -20,7 +20,7 @@ func _ready() -> void:
 	if type_element == "enemy": add_theme_stylebox_override("panel", ELEMENT_ENEMY)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	position.y -= speed * delta
 
 
@@ -29,5 +29,5 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
-	emit_signal("area_entered", type_element)
+	emit_signal("area_entered", type_element, Vector2(position.x + size.x / 2, position.y + size.y / 2))
 	queue_free()

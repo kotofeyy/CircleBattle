@@ -8,6 +8,9 @@ extends Control
 @onready var audio_stream_player_succes: AudioStreamPlayer = $AudioStreamPlayerSucces
 @onready var audio_stream_player_wrong: AudioStreamPlayer = $AudioStreamPlayerWrong
 @onready var h_box_container: HBoxContainer = $HeartsControl/MarginContainer/HBoxContainer
+@onready var animated_sprite_2d_hit: AnimatedSprite2D = $AnimatedSprite2DHit
+@onready var end_game_panel: Panel = $EndGamePanel
+@onready var final_scores_label: Label = $EndGamePanel/MarginContainer/VBoxContainer/FinalScoresLabel
 
 
 var direction: bool
@@ -27,10 +30,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if direction:
-		panel.rotation_degrees += 50 * delta
+	if game_is_start:
+		if direction:
+			panel.rotation_degrees += 50 * delta
+		else:
+			panel.rotation_degrees -= 50 * delta
 	else:
-		panel.rotation_degrees -= 50 * delta
+		end_game_panel.visible = true
+		clear_enemies()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -43,7 +50,6 @@ func spawn_loop() -> void:
 	while game_is_start:
 		var position_x = randi_range(0, screen_size.x - 40)
 		var chance = randf()
-		print("шанс - ", chance)
 		var enemy: Enemy = enemy_prefub.instantiate()
 		enemy.area_entered.connect(on_area_entered)
 		if chance < chance_spawn_eneemy:
@@ -62,7 +68,10 @@ func spawn_loop() -> void:
 		if !game_is_start: return
 
 
-func on_area_entered(type) -> void:
+func on_area_entered(type, pos) -> void:
+	print("health - ", health)
+	animated_sprite_2d_hit.position = pos
+	animated_sprite_2d_hit.play("hit_white")
 	if type == "friend":
 		audio_stream_player_succes.play()
 		scores += 1
@@ -83,6 +92,7 @@ func on_area_entered(type) -> void:
 			game_is_start = false
 
 	score_label.text = str(scores)
+	final_scores_label.text = "Очков: " + str(scores)
 	
 	
 func add_heart() -> void:
@@ -91,8 +101,9 @@ func add_heart() -> void:
 
 
 func remove_heart() -> void:
-	var first_born = h_box_container.get_child(0)
-	first_born.queue_free()
+	var first_child = h_box_container.get_child(0)
+	if first_child:
+		first_child.queue_free()
 
 
 func score_label_shake() -> void:
@@ -105,3 +116,26 @@ func score_label_wrong() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(score_label, "rotation_degrees", 30, 0.1)
 	tween.chain().tween_property(score_label, "rotation_degrees", 0, 0.1)
+
+
+func _on_restart_game_button_pressed() -> void:
+	end_game_panel.visible = false
+	game_is_start = true
+	spawn_loop()
+	restart_game()
+
+
+func restart_game() -> void:
+	add_heart()
+	add_heart()
+	add_heart()
+	health = 3
+	scores = 0
+	score_label.text = str(scores)
+
+
+func clear_enemies() -> void:
+	var children = get_children()
+	for child in children:
+		if child is Enemy:
+			child.queue_free()

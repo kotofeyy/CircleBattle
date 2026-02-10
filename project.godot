@@ -19,6 +19,9 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=500
 window/size/viewport_height=888
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
 
 [input]
 
@@ -41,3 +44,4 @@ pointing/emulate_touch_from_mouse=true
 textures/canvas_textures/default_texture_filter=3
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
