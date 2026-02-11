@@ -10,6 +10,7 @@ extends Control
 @onready var h_box_container: HBoxContainer = $HeartsControl/MarginContainer/HBoxContainer
 @onready var animated_sprite_2d_hit: AnimatedSprite2D = $AnimatedSprite2DHit
 @onready var end_game_panel: Panel = $EndGamePanel
+@onready var start_game_button: Button = $StartGameButton
 @onready var final_scores_label: Label = $EndGamePanel/MarginContainer/VBoxContainer/FinalScoresLabel
 
 
@@ -18,15 +19,11 @@ var scores = 0
 var chance_spawn_eneemy = 0.15
 var chance_spawn_heart = 0.30
 var health = 3
-var game_is_start = true
+var game_is_start = false
 
 
 func _ready() -> void:
-	score_label.text = str(scores)
-	spawn_loop()
-	add_heart()
-	add_heart()
-	add_heart()
+	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +33,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			panel.rotation_degrees -= 50 * delta
 	else:
-		end_game_panel.visible = true
 		clear_enemies()
 
 
@@ -90,6 +86,7 @@ func on_area_entered(type, pos) -> void:
 		score_label_wrong()
 		if health < 1:
 			game_is_start = false
+			end_game_panel.visible = true
 
 	score_label.text = str(scores)
 	final_scores_label.text = "Очков: " + str(scores)
@@ -125,6 +122,15 @@ func _on_restart_game_button_pressed() -> void:
 	restart_game()
 
 
+func start_game() -> void:
+	game_is_start = true
+	score_label.text = str(scores)
+	spawn_loop()
+	add_heart()
+	add_heart()
+	add_heart()
+
+
 func restart_game() -> void:
 	add_heart()
 	add_heart()
@@ -139,3 +145,8 @@ func clear_enemies() -> void:
 	for child in children:
 		if child is Enemy:
 			child.queue_free()
+
+
+func _on_start_game_button_pressed() -> void:
+	start_game()
+	start_game_button.visible = false

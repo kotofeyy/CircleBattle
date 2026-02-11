@@ -18,10 +18,9 @@ func _ready() -> void:
 	if type_element == "friend": add_theme_stylebox_override("panel", ELEMENT_FRIEND)
 	if type_element == "heart": add_theme_stylebox_override("panel", ELEMENT_HEALTH)
 	if type_element == "enemy": add_theme_stylebox_override("panel", ELEMENT_ENEMY)
-
-
-func _process(delta: float) -> void:
-	position.y -= speed * delta
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position:y", -50, 4.5)
 
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
