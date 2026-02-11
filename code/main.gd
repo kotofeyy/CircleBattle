@@ -21,6 +21,10 @@ extends Control
 @onready var timer_label: Label = $TimerControl/HBoxContainer/TimerLabel
 @onready var timer_control: Control = $TimerControl
 
+@onready var elemen_2_line_direction_right: Line2D = $CircleElements/Elemen2LineDirectionRight
+@onready var element_2_line_direction_left: Line2D = $CircleElements/Element2LineDirectionLeft
+@onready var element_1_line_direction_right: Line2D = $CircleElements/Element1LineDirectionRight
+@onready var element_1_line_direction_left: Line2D = $CircleElements/Element1LineDirectionLeft
 
 
 
@@ -75,6 +79,16 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton  and event.is_action_pressed("mouse_action"):
 		direction = !direction
+		if direction:
+			element_1_line_direction_left.visible = false
+			element_2_line_direction_left.visible = false
+			element_1_line_direction_right.visible = true
+			elemen_2_line_direction_right.visible = true
+		else:
+			element_1_line_direction_left.visible = true
+			element_2_line_direction_left.visible = true
+			element_1_line_direction_right.visible = false
+			elemen_2_line_direction_right.visible = false
 		
 
 func spawn_loop() -> void:

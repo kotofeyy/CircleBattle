@@ -16,6 +16,10 @@ corner_radius_top_right = 150
 corner_radius_bottom_right = 150
 corner_radius_bottom_left = 150
 
+[sub_resource type="Curve" id="Curve_5vw27"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(40, 40)
 
@@ -216,6 +220,46 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
+
+[node name="Elemen2LineDirectionRight" type="Line2D" parent="CircleElements" unique_id=906181562]
+visible = false
+position = Vector2(20, 143.465)
+rotation = 3.1415925
+points = PackedVector2Array(20, 3.175, 12, -22.805)
+closed = true
+width = 18.63
+width_curve = SubResource("Curve_5vw27")
+default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+end_cap_mode = 2
+
+[node name="Element2LineDirectionLeft" type="Line2D" parent="CircleElements" unique_id=1354073104]
+position = Vector2(20, 143.465)
+rotation = 3.1415925
+points = PackedVector2Array(20, 36.205, 12, 62.835)
+closed = true
+width = 18.63
+width_curve = SubResource("Curve_5vw27")
+default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+end_cap_mode = 2
+
+[node name="Element1LineDirectionRight" type="Line2D" parent="CircleElements" unique_id=1229330878]
+visible = false
+position = Vector2(230, 105)
+points = PackedVector2Array(20, 3.175, 12, -22.805)
+closed = true
+width = 18.63
+width_curve = SubResource("Curve_5vw27")
+default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+end_cap_mode = 2
+
+[node name="Element1LineDirectionLeft" type="Line2D" parent="CircleElements" unique_id=294553049]
+position = Vector2(230, 105)
+points = PackedVector2Array(20, 36.205, 12, 62.835)
+closed = true
+width = 18.63
+width_curve = SubResource("Curve_5vw27")
+default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+end_cap_mode = 2
 
 [node name="Element" type="Panel" parent="CircleElements" unique_id=788550441]
 layout_mode = 1
@@ -494,6 +538,7 @@ text = "Нажмите, чтобы начать"
 wait_time = 15.0
 
 [node name="TimerControl" type="Control" parent="." unique_id=1214751806]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
