@@ -229,7 +229,7 @@ points = PackedVector2Array(20, 3.175, 12, -22.805)
 closed = true
 width = 18.63
 width_curve = SubResource("Curve_5vw27")
-default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+default_color = Color(0.6460293, 0.6460289, 0.646029, 1)
 end_cap_mode = 2
 
 [node name="Element2LineDirectionLeft" type="Line2D" parent="CircleElements" unique_id=1354073104]
@@ -239,7 +239,7 @@ points = PackedVector2Array(20, 36.205, 12, 62.835)
 closed = true
 width = 18.63
 width_curve = SubResource("Curve_5vw27")
-default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+default_color = Color(0.6460293, 0.6460289, 0.646029, 1)
 end_cap_mode = 2
 
 [node name="Element1LineDirectionRight" type="Line2D" parent="CircleElements" unique_id=1229330878]
@@ -249,7 +249,7 @@ points = PackedVector2Array(20, 3.175, 12, -22.805)
 closed = true
 width = 18.63
 width_curve = SubResource("Curve_5vw27")
-default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+default_color = Color(0.6460293, 0.6460289, 0.646029, 1)
 end_cap_mode = 2
 
 [node name="Element1LineDirectionLeft" type="Line2D" parent="CircleElements" unique_id=294553049]
@@ -258,7 +258,7 @@ points = PackedVector2Array(20, 36.205, 12, 62.835)
 closed = true
 width = 18.63
 width_curve = SubResource("Curve_5vw27")
-default_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+default_color = Color(0.6460293, 0.6460289, 0.646029, 1)
 end_cap_mode = 2
 
 [node name="Element" type="Panel" parent="CircleElements" unique_id=788550441]

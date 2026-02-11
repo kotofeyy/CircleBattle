@@ -26,6 +26,7 @@ extends Control
 @onready var element_1_line_direction_right: Line2D = $CircleElements/Element1LineDirectionRight
 @onready var element_1_line_direction_left: Line2D = $CircleElements/Element1LineDirectionLeft
 
+var ELEMENT_FRIEND = preload("uid://nhx7jgro50t")
 
 
 var direction: bool
@@ -38,7 +39,7 @@ var spawn_interval = 0.5
 var health = 3
 var game_is_start = false
 var shield_is_enabled = false
-
+var color_list = [Color.BURLYWOOD, Color.DARK_ORANGE, Color.DEEP_PINK, Color.INDIAN_RED, Color.SEA_GREEN]
 
 func _ready() -> void:
 	pass
@@ -48,9 +49,9 @@ func _physics_process(delta: float) -> void:
 	if game_is_start:
 		if scores > 30:
 			spawn_interval = 0.4
-		if scores > 60:
+		if scores > 40:
 			spawn_interval = 0.3
-		if scores > 70:
+		if scores > 60:
 			spawn_interval = 0.2
 
 		if shield_is_enabled:
@@ -144,10 +145,17 @@ func on_area_entered(type, pos) -> void:
 			if health < 1:
 				game_is_start = false
 				end_game_panel.visible = true
-
+	change_color_style_box()
 	score_label.text = str(scores)
 	final_scores_label.text = "Очков: " + str(scores)
 	
+func change_color_style_box() -> void:
+	if scores > 0 and scores % 10 == 0:
+		var color = color_list.pick_random()
+		if color == ELEMENT_FRIEND.bg_color:
+			change_color_style_box()
+		else:
+			ELEMENT_FRIEND.bg_color = color
 	
 func add_heart() -> void:
 	var heart_inst = heart_preload.instantiate()
