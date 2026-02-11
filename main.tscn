@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bl0farenm73op" path="res://sounds/476177__unadamlar__wrong-choice.wav" id="5_lquwl"]
 [ext_resource type="Texture2D" uid="uid://cm12x7ldcsk6u" path="res://sprites/hit_white.png" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://b06pubdaulyx0" path="res://sprites/refresh.png" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://pl8e52xnocs7" path="res://sprites/shield.png" id="8_5vw27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.3954539, 0.5960563, 0.9408558, 1)
@@ -17,6 +18,15 @@ corner_radius_bottom_left = 150
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(40, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+bg_color = Color(0.30588236, 0.6784314, 0.5686275, 0.40784314)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_272bh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(40, 40)
@@ -189,7 +199,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7dm0k")
 
-[node name="Panel" type="Panel" parent="." unique_id=810005137]
+[node name="CircleElements" type="Panel" parent="." unique_id=810005137]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
@@ -207,7 +217,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="Element" type="Panel" parent="Panel" unique_id=788550441]
+[node name="Element" type="Panel" parent="CircleElements" unique_id=788550441]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -224,13 +234,32 @@ pivot_offset = Vector2(20, 20)
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_1bvp3")
 
-[node name="Area2DElement1" type="Area2D" parent="Panel/Element" unique_id=1069797199]
+[node name="Area2DElement1" type="Area2D" parent="CircleElements/Element" unique_id=1069797199]
 
-[node name="CollisionShape2DElement1" type="CollisionShape2D" parent="Panel/Element/Area2DElement1" unique_id=666998756]
+[node name="CollisionShape2DElement1" type="CollisionShape2D" parent="CircleElements/Element/Area2DElement1" unique_id=666998756]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="Element2" type="Panel" parent="Panel" unique_id=1908092260]
+[node name="Shield" type="Panel" parent="CircleElements/Element" unique_id=1943079620]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 90.0
+offset_bottom = 90.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efxa6")
+
+[node name="Area2D" type="Area2D" parent="CircleElements/Element/Shield" unique_id=635719119]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CircleElements/Element/Shield/Area2D" unique_id=786272702]
+position = Vector2(70, 70)
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_272bh")
+
+[node name="Element2" type="Panel" parent="CircleElements" unique_id=1908092260]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -247,9 +276,28 @@ pivot_offset = Vector2(20, 20)
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_1bvp3")
 
-[node name="Area2DElement2" type="Area2D" parent="Panel/Element2" unique_id=462463089]
+[node name="Shield" type="Panel" parent="CircleElements/Element2" unique_id=97189527]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 90.0
+offset_bottom = 90.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efxa6")
 
-[node name="CollisionShape2DElement2" type="CollisionShape2D" parent="Panel/Element2/Area2DElement2" unique_id=1269300167]
+[node name="Area2D" type="Area2D" parent="CircleElements/Element2/Shield" unique_id=1945982656]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CircleElements/Element2/Shield/Area2D" unique_id=1614778998]
+position = Vector2(70, 70)
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_272bh")
+
+[node name="Area2DElement2" type="Area2D" parent="CircleElements/Element2" unique_id=462463089]
+
+[node name="CollisionShape2DElement2" type="CollisionShape2D" parent="CircleElements/Element2/Area2DElement2" unique_id=1269300167]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_0xm2m")
 
@@ -442,5 +490,45 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Нажмите, чтобы начать"
 
+[node name="Timer" type="Timer" parent="." unique_id=2136112891]
+wait_time = 15.0
+
+[node name="TimerControl" type="Control" parent="." unique_id=1214751806]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 131.0
+offset_right = 7.0
+offset_bottom = 171.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TimerControl" unique_id=1028578323]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TimerControl/HBoxContainer" unique_id=2139526249]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_5vw27")
+
+[node name="TimerLabel" type="Label" parent="TimerControl/HBoxContainer" unique_id=701461259]
+z_index = 1
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "15:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="EndGamePanel/MarginContainer/RestartGameButton" to="." method="_on_restart_game_button_pressed"]
 [connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

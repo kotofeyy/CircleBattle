@@ -4,6 +4,7 @@ class_name Enemy
 const ELEMENT_ENEMY = preload("uid://bd5ah7dx2gsdr")
 const ELEMENT_FRIEND = preload("uid://nhx7jgro50t")
 const ELEMENT_HEALTH = preload("uid://ciuglsimu31u0")
+const ELEMENT_SHIELD = preload("uid://b8mji4xrullv")
 
 
 @export var speed: int = 150
@@ -11,13 +12,14 @@ const ELEMENT_HEALTH = preload("uid://ciuglsimu31u0")
 
 signal area_entered
 
-var type_element = "friend" ## friend or enemy or heart
+var type_element = "friend" ## friend or enemy or heart or shield
 
 
 func _ready() -> void:
 	if type_element == "friend": add_theme_stylebox_override("panel", ELEMENT_FRIEND)
 	if type_element == "heart": add_theme_stylebox_override("panel", ELEMENT_HEALTH)
 	if type_element == "enemy": add_theme_stylebox_override("panel", ELEMENT_ENEMY)
+	if type_element == "shield": add_theme_stylebox_override("panel", ELEMENT_SHIELD)
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position:y", -50, 4.5)
