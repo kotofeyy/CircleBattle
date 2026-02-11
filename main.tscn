@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cm12x7ldcsk6u" path="res://sprites/hit_white.png" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://b06pubdaulyx0" path="res://sprites/refresh.png" id="7_272bh"]
 [ext_resource type="Texture2D" uid="uid://pl8e52xnocs7" path="res://sprites/shield.png" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://bgjjb1igg1pw" path="res://sprites/pause.png" id="9_kek77"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.3954539, 0.5960563, 0.9408558, 1)
@@ -446,6 +447,7 @@ layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_kek77")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_272bh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_272bh")
 icon = ExtResource("7_272bh")
 icon_alignment = 1
@@ -574,6 +576,20 @@ text = "15:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PauseButton" type="Button" parent="." unique_id=655212902]
+process_mode = 3
+visible = false
+z_index = 2
+texture_filter = 3
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 40
+icon = ExtResource("9_kek77")
+flat = true
+icon_alignment = 1
+
 [connection signal="pressed" from="EndGamePanel/MarginContainer/RestartGameButton" to="." method="_on_restart_game_button_pressed"]
 [connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

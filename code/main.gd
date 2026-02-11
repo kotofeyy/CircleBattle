@@ -11,6 +11,7 @@ extends Control
 @onready var animated_sprite_2d_hit: AnimatedSprite2D = $AnimatedSprite2DHit
 @onready var end_game_panel: Panel = $EndGamePanel
 @onready var start_game_button: Button = $StartGameButton
+@onready var pause_button: Button = $PauseButton
 @onready var final_scores_label: Label = $EndGamePanel/MarginContainer/VBoxContainer/FinalScoresLabel
 @onready var shield_1: Panel = $CircleElements/Element/Shield
 @onready var shield_2: Panel = $CircleElements/Element2/Shield
@@ -27,6 +28,9 @@ extends Control
 @onready var element_1_line_direction_left: Line2D = $CircleElements/Element1LineDirectionLeft
 
 var ELEMENT_FRIEND = preload("uid://nhx7jgro50t")
+
+const PAUSE = preload("uid://bgjjb1igg1pw")
+const PLAY = preload("uid://bocd2gvbpuc2a")
 
 
 var direction: bool
@@ -97,20 +101,16 @@ func spawn_loop() -> void:
 	while game_is_start:
 		var position_x = randi_range(0, screen_size.x - 40)
 		var chance = randf()
-		print("chance - ", chance)
 		var enemy: Enemy = enemy_prefub.instantiate()
 		enemy.area_entered.connect(on_area_entered)
 		if chance < chance_spawn_enemy:
 			enemy.type_element = "enemy"
-		
 		if chance > chance_spawn_enemy and chance < chance_spawn_shield:
 			enemy.type_element = "shield"
 		if chance > chance_spawn_shield and chance < chance_spawn_friend:
 			enemy.type_element = "friend"
 		if chance > chance_spawn_heart:
 			enemy.type_element = "heart"
-		#else:
-			#enemy.type_element = "friend"
 		add_child(enemy)
 		enemy.position = Vector2(position_x, screen_size.y)
 		
@@ -145,7 +145,7 @@ func on_area_entered(type, pos) -> void:
 			if health < 1:
 				game_is_start = false
 				end_game_panel.visible = true
-	change_color_style_box()
+	#change_color_style_box()
 	score_label.text = str(scores)
 	final_scores_label.text = "Очков: " + str(scores)
 	
@@ -194,6 +194,7 @@ func start_game() -> void:
 	add_heart()
 	add_heart()
 	add_heart()
+	pause_button.visible = true
 
 
 func restart_game() -> void:
@@ -224,7 +225,6 @@ func enable_shield() -> void:
 	area_2d_shield_2.set_deferred("monitorable", true)
 	
 
-
 func disable_shield() -> void:
 	shield_1.visible = false
 	shield_2.visible = false
@@ -234,3 +234,11 @@ func disable_shield() -> void:
 
 func _on_timer_timeout() -> void:
 	shield_is_enabled = false
+
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = !get_tree().paused
+	if get_tree().paused:
+		pause_button.icon = PLAY
+	else:
+		pause_button.icon = PAUSE
